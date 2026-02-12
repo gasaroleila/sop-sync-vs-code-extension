@@ -1,71 +1,101 @@
-# SopSync README
+# SopSync
 
-This is the README for your extension "SopSync". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+SopSync turns AI-generated instructions into structured, reusable workflows directly inside VS Code.  
+It allows you to save refined Claude outputs as standardized Markdown documents and automatically sync project workflow files into your active Claude context.
 
 ---
 
-## Following extension guidelines
+## Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+### 1. Structured Workflow Generator
+SopSync converts simple user instructions into fully structured workflow documents using a standardized template.
 
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+Generated documents include:
 
-## Working with Markdown
+- **Metadata** (title, category, versioning, timestamps)  
+- **Purpose**  
+- **When to Use**  
+- **Required Input**  
+- **Step-by-Step Instructions**  
+- **Output Format**  
+- **Notes**  
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+This transforms one-off Claude prompts into reusable operational knowledge.
 
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+---
 
-## For more information
+### 2. Auto-Sync Workflow Folder into Claude Context
+SopSync automatically reads Markdown files inside your project’s `/sops` (or configurable) folder and syncs them into a central `claude.md` file.
 
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+This means:
 
-**Enjoy!**
+- Your structured workflows are always available to Claude  
+- You don’t need to manually paste instructions  
+- Claude operates with persistent project memory  
+
+SopSync bridges structured documentation and AI execution.
+
+---
+
+### 3. AI-Refined Template Filling (Phase 2 Feature)
+Instead of manually filling template sections, SopSync sends the basic instruction to Claude and:
+
+- Expands the idea  
+- Fills in all structured sections  
+- Returns a complete, refined Markdown workflow  
+
+This ensures consistency and higher-quality SOP documentation.
+
+---
+
+## Requirements
+- VS Code (latest stable recommended)  
+- Claude Code extension installed  
+- A project workspace folder open  
+
+**Optional:**  
+- A `/sops` folder in your workspace to enable auto-sync  
+
+---
+
+## Extension Settings
+
+SopSync contributes the following settings:
+
+- `sopsync.saveInstructionEnabled`  
+  Create structured instructions from simple user requests as Markdown workflow files.
+
+- `sopsync.loadSOPsIntoClaudeEnabled`  
+  Automatically load SOP files from the `/sopsync/workflows` folder into the `CLAUDE.md` context file.
+
+
+Access via Command Palette:  
+
+- **Mac:** `Cmd + Shift + P`  
+- **Windows/Linux:** `Ctrl + Shift + P`  
+
+---
+
+## Known Issues
+- Requires Claude extension to be active for AI refinement feature  
+- Large SOP folders may slightly increase Claude context size
+- Relies on Claude's response time to generate the structured workflow files, which can cause a delay.
+  
+---
+
+## Release Notes
+
+### 1.0.0
+- Initial release  
+- Structured workflow template generator  
+- Manual SOP folder sync  
+
+### 1.1.0
+- Added automatic SOP folder reading  
+- Added Claude-powered template refinement  
+
+---
+
+## Why SopSync?
+AI chats are powerful, but valuable instructions often get buried in history and forgotten.  
+SopSync transforms AI conversations into structured, reusable, and shareable knowledge.  
